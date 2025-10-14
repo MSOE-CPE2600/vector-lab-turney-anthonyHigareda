@@ -69,11 +69,13 @@ void runInterface()
     {
         if (!strcmp(tokens[0], "quit"))
         {
+            clear();
             printf("Goodbye\n");
             exit(0);
         }
         else if (!strcmp(tokens[0], "clear"))
         {
+            clear();
             init();
             printf("All vectors cleared\n");
         }

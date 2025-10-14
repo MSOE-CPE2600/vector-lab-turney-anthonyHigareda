@@ -17,6 +17,8 @@
 #include "vector.h"
 
 void init();
+void clear();
+void reallocate();
 Vector getVector(char *name);
 int findVector(char *name);
 int addVector(Vector vnew);

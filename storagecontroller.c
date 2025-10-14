@@ -17,10 +17,11 @@
 #include "vector.h"
 #include "mathcontroller.h"
 
-#define EXPANSION_SIZE 3
+#define EXPANSION_SIZE 5
 
 
 void init();
+void clear();
 void reallocate();
 Vector getVector(char *name);
 int findVector(char *name);
@@ -29,36 +30,44 @@ void list();
 
 Vector *vectors;
 int numVectors;
+int currentSize;
 
 void init()
 {
     vectors = malloc(sizeof(Vector) * EXPANSION_SIZE);
     numVectors = 0;
+    currentSize = EXPANSION_SIZE;
     Vector vnull;
     strcpy(vnull.name, "NULL");
     vnull.x = 0;
     vnull.y = 0;
     vnull.z = 0;
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < currentSize; i++)
     {
         vectors[i] = vnull;
     }
 }
 
+void clear()
+{
+    free(vectors);
+}
+
 void reallocate()
 {
-    Vector *newVectors = malloc(sizeof(Vector) * (numVectors + EXPANSION_SIZE));
+    Vector *newVectors = malloc(sizeof(Vector) * (currentSize + EXPANSION_SIZE));
     int i;
     for (i = 0; i < numVectors; i++)
     {
         newVectors[i] = vectors[i];
     }
+    currentSize += EXPANSION_SIZE;
     Vector vnull;
     strcpy(vnull.name, "NULL");
     vnull.x = 0;
     vnull.y = 0;
     vnull.z = 0;    
-    for (i = numVectors; i < numVectors + EXPANSION_SIZE; i++)
+    for (i = numVectors; i < currentSize; i++)
     {
         newVectors[i] = vnull;
     }
@@ -87,7 +96,7 @@ Vector getVector(char *name)
 
 int findVector(char *name)
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < currentSize; i++)
     {
         if (!strcmp(vectors[i].name, name))
         {
@@ -106,8 +115,12 @@ void addVector(Vector vnew)
         if (i == -1)
         {
             reallocate();
+            vectors[numVectors] = vnew;
         }
-        vectors[i] = vnew;
+        else
+        {
+            vectors[i] = vnew;
+        }
         numVectors += 1;
     }
     else
@@ -122,7 +135,7 @@ void list()
     {
         printf("No vectors stored\n");
     }
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < currentSize; i++)
     {
         if (strcmp(vectors[i].name, "NULL"))
         {
