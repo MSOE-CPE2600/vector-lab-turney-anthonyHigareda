@@ -114,10 +114,8 @@ void runInterface()
             v1.x = v2.x;
             v1.y = v2.y;
             v1.z = v2.z;
-            if (addVector(v1))
-            {
-                display(v1);
-            }
+            addVector(v1);
+            display(v1);
         }
         // a + b
         // Calculate the value of a + b without
@@ -203,10 +201,8 @@ void runInterface()
             Vector v1 = getVector(tokens[2]);
             Vector v2 = getVector(tokens[4]);
             vret = add(v1, v2);
-            if (addVector(vret))
-            {
-                display(vret);
-            }
+            addVector(vret);
+            display(vret);
         }
         // c = a - b
         // Calculate the value of a - b and
@@ -217,10 +213,7 @@ void runInterface()
             Vector v1 = getVector(tokens[2]);
             Vector v2 = getVector(tokens[4]);
             vret = sub(v1, v2);
-            if (addVector(vret))
-            {
-                display(vret);
-            }
+            addVector(vret);
         }
         // c = a * x
         // Calculate the value of a * x and
@@ -234,10 +227,8 @@ void runInterface()
                 double scalar = atof(tokens[4]);
                 vret = scalarMult(v1, scalar);
                 strcpy(vret.name, tokens[0]);
-                if (addVector(vret))
-                {
-                    display(vret);
-                }
+                addVector(vret);
+                display(vret);
             }
             else
             {
@@ -260,10 +251,8 @@ void runInterface()
             Vector v1 = getVector(tokens[2]);
             Vector v2 = getVector(tokens[4]);
             vret = crossProd(v1, v2);
-            if (addVector(vret))
-            {
-                display(vret);
-            }
+            addVector(vret);
+            display(vret);
         }
         // a = 1 2 3
         // Checks that the 4th token is a digit
@@ -289,10 +278,8 @@ void runInterface()
                 vnew.x = atof(tokens[2]);
                 vnew.y = atof(tokens[3]);
                 vnew.z = atof(tokens[4]);
-                if (addVector(vnew))
-                {
-                    display(vnew);
-                }
+                addVector(vnew);
+                display(vnew);
             }
         }
     }

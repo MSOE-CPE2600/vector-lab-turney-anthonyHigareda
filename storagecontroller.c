@@ -17,17 +17,23 @@
 #include "vector.h"
 #include "mathcontroller.h"
 
+#define EXPANSION_SIZE 3
+
 
 void init();
+void reallocate();
 Vector getVector(char *name);
 int findVector(char *name);
-int addVector(Vector vnew);
+void addVector(Vector vnew);
 void list();
 
-Vector vectors[10];
+Vector *vectors;
+int numVectors;
 
 void init()
 {
+    vectors = malloc(sizeof(Vector) * EXPANSION_SIZE);
+    numVectors = 0;
     Vector vnull;
     strcpy(vnull.name, "NULL");
     vnull.x = 0;
@@ -37,6 +43,27 @@ void init()
     {
         vectors[i] = vnull;
     }
+}
+
+void reallocate()
+{
+    Vector *newVectors = malloc(sizeof(Vector) * (numVectors + EXPANSION_SIZE));
+    int i;
+    for (i = 0; i < numVectors; i++)
+    {
+        newVectors[i] = vectors[i];
+    }
+    Vector vnull;
+    strcpy(vnull.name, "NULL");
+    vnull.x = 0;
+    vnull.y = 0;
+    vnull.z = 0;    
+    for (i = numVectors; i < numVectors + EXPANSION_SIZE; i++)
+    {
+        newVectors[i] = vnull;
+    }
+    free(vectors);
+    vectors = newVectors;
 }
 
 Vector getVector(char *name)
@@ -70,7 +97,7 @@ int findVector(char *name)
     return -1;
 }
 
-int addVector(Vector vnew)
+void addVector(Vector vnew)
 {
     int i = findVector(vnew.name);
     if (i == -1)
@@ -78,20 +105,15 @@ int addVector(Vector vnew)
         i = findVector("NULL");
         if (i == -1)
         {
-            printf("Storage is full! Please clear storage with \"clear\"%s",
-            " before adding new vectors\n");
-            return 0;
+            reallocate();
         }
-        else
-        {
-            vectors[i] = vnew;
-        }
+        vectors[i] = vnew;
+        numVectors += 1;
     }
     else
     {
         vectors[i] = vnew;
     }
-    return 1;
 }
 
 void list()
