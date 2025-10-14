@@ -169,6 +169,8 @@ int loadFromCSV(char *filename)
         vnew.z = atof(strtok(NULL, ","));
         addVector(vnew);
     }
+    free(line);
+    fclose(data);
     return 0;
 }
 
