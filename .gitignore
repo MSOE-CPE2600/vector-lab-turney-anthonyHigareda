@@ -6,3 +6,5 @@
 vector
 #vscode files
 .vscode/
+#testing .csv files
+*.csv
