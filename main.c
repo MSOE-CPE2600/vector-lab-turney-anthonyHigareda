@@ -25,14 +25,11 @@
 
 int main(int argc, char const *argv[])
 {
-
     if (argc > 1 && !strcmp(argv[1], "-h"))
     {
         drawHelp();
     }
-
     init();
-
     while (1)
     {
         runInterface();
