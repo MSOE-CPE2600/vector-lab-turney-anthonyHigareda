@@ -16,7 +16,7 @@
 
 typedef struct vector
 {
-    char name[5];
+    char name[10];
     double x;
     double y;
     double z;

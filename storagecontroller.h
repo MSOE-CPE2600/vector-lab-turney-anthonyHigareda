@@ -23,5 +23,7 @@ Vector getVector(char *name);
 int findVector(char *name);
 int addVector(Vector vnew);
 void list();
+int loadFromCSV(char *filename);
+int saveToCSV(char *filename);
 
 #endif // STORAGE_CONTROLLER_H

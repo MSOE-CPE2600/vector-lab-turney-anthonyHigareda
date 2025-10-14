@@ -99,7 +99,41 @@ void runInterface()
             }
         }
     }
-    // there should be nothing to do with only 2 tokens
+    // the only executable operations with 2 tokens are
+    // loading and saving .csv files
+    // Example:
+    // load input.csv
+    // save vectors.csv
+    else if (numTokens == 2)
+    {
+        if (!strcmp(tokens[0], "load"))
+        {
+            if (loadFromCSV(tokens[1]))
+            {
+                printf("Loading failed! Please verify filename and try again.\n");
+            }
+            else
+            {
+                printf("%s loaded successfully.\n", tokens[1]);
+                list();
+            }
+        }
+        else if (!strcmp(tokens[0], "save"))
+        {
+            if (saveToCSV(tokens[1]))
+            {
+                printf("Save failed! Please try again.\n");
+            }
+            else
+            {
+                printf("Successfully saved to %s\n", tokens[1]);
+            }
+        }
+        else
+        {
+            printf("Unknown command! Please check spelling and try again.\n");
+        }
+    }
     // Example operations for 3 tokens:
     // a = b
     // a * 3
@@ -321,11 +355,15 @@ void drawHelp()
     printf("* list    - List all saved vectors\n");
     printf("* help    - Display this help menu\n");
     printf("* quit    - Quit the program\n\n");
+    printf("* Load or Save from a File\n");
+    printf("* load <filename>    - Load all vectors in the specified file.\n");
+    printf("** NOTE: Vectors in memory that share a name with a loaded vector will be overwritten!\n");
+    printf("* save <filename>    - Save all vectors in memory to the specified file\n\n");
     printf("* Mathematical Functions Available \n");
     printf("* %-22s [+]\n* %-22s [-]\n* %-22s [*]\n* %-22s [.]\n* %-22s [X]\n\n",
         "ADDITION", "SUBTRACTION", "SCALAR MULTIPLICATION", "DOT PRODUCT", "CROSS PRODUCT");
     printf("* Example syntax:\n");
-    printf("> a = 1 2 3\n> b = 3,4,5\n> c = a + b\n\n");
+    printf("> a = 1 2 3\n> b = 3,4,5\n> c = a + b\n> load file.csv\n\n");
     printf("** IMPORTANT: \n** All terms or symbols must be separated %s",
         "by EXACTLY ONE space ' ' or comma ','\n\n");
 }

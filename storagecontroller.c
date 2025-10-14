@@ -27,6 +27,8 @@ Vector getVector(char *name);
 int findVector(char *name);
 void addVector(Vector vnew);
 void list();
+int loadFromCSV(char *filename);
+int saveToCSV(char *filename);
 
 Vector *vectors;
 int numVectors;
@@ -149,3 +151,43 @@ void list()
     }
 }
 
+int loadFromCSV(char *filename)
+{
+    FILE *data = fopen(filename, "r");
+    if (data == NULL)
+    {
+        return 1;
+    }
+    char *line = malloc(sizeof(char) * 50);
+
+    while (fgets(line, sizeof(char) * 50, data) != NULL)
+    {
+        Vector vnew;
+        strcpy(vnew.name, strtok(line, ","));
+        vnew.x = atof(strtok(NULL, ","));
+        vnew.y = atof(strtok(NULL, ","));
+        vnew.z = atof(strtok(NULL, ","));
+        addVector(vnew);
+    }
+    return 0;
+}
+
+int saveToCSV(char *filename)
+{
+    FILE *save = fopen(filename, "w");
+    if (save == NULL)
+    {
+        return 1;
+    }
+    for (int i = 0; i < numVectors; i++)
+    {
+        char name[10];
+        strcpy(name, vectors[i].name);
+        double x = vectors[i].x;
+        double y = vectors[i].y;
+        double z = vectors[i].z;
+        fprintf(save, "%s,%f,%f,%f\n", name, x, y, z);
+    }
+    fclose(save);
+    return 0;
+}
