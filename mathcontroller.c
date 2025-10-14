@@ -4,7 +4,7 @@
 * Fall 2025
 * 
 * Anthony Higareda
-* Lab 5: Vector Calculator
+* Lab 6: Git and GitHub
 * Created: 30 September 2025
 *
 * mathcontroller.c
