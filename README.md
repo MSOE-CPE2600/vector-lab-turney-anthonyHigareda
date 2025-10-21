@@ -1,7 +1,7 @@
 # VECTOR CALCULATOR
 ### Version 2.0: Released 21 October 2025
 
-#### Developed by Anthony Higareda for MSOE CPE2600-111, Systems Programming, Lab 7<br><br><br>
+#### Developed by Anthony Higareda for MSOE CPE2600-131, Systems Programming, Lab 7<br><br><br>
 
 Create 3-dimensional vectors and perform mathematical functions on them.
 This program uses dynamic memory to store a near-infinite amount of vectors.
