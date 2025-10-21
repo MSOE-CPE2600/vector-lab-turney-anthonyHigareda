@@ -1,5 +1,5 @@
 # VECTOR CALCULATOR
-### Version 1.0: Released 21 October 2025
+### Version 2.0: Released 21 October 2025
 
 #### Developed by Anthony Higareda for MSOE CPE2600-111, Systems Programming, Lab 7<br><br><br>
 
