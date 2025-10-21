@@ -297,26 +297,11 @@ void runInterface()
         {
             Vector vnew;
             strcpy(vnew.name, tokens[0]);
-            if (!isdigit(tokens[2][0]))
-            {
-                numConversionError(tokens[2]);
-            }
-            else if (!isdigit(tokens[3][0]))
-            {
-                numConversionError(tokens[3]);
-            }
-            else if (!isdigit(tokens[4][0]))
-            {
-                numConversionError(tokens[4]);
-            }
-            else 
-            {
-                vnew.x = atof(tokens[2]);
-                vnew.y = atof(tokens[3]);
-                vnew.z = atof(tokens[4]);
-                addVector(vnew);
-                display(vnew);
-            }
+            vnew.x = atof(tokens[2]);
+            vnew.y = atof(tokens[3]);
+            vnew.z = atof(tokens[4]);
+            addVector(vnew);
+            display(vnew);
         }
     }
     // Comes here if there are 2 or 4 tokens in the input
